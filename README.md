@@ -1,8 +1,8 @@
-# h264 to h265 simple recursive transcoder
+# h264 to h265 simple recursive transcoder❤
 
 This is simple, you give the path to a parent folder and this will convert all '.mp4 (h264)' videos to '.mp4 (h265)' using only 60% of the original bitrate. If a video has already been converted or has an 'h265' codec it will be ignored
 
-> normally h265 allows you to save 40% of the total bitrate maintaining an acceptable quality, although of course, if you want you could specify that the total bitrate or double or triple be used in line 43
+> normally h265 allows you to save 40% of the total bitrate maintaining an acceptable quality, although of course, if you want you could specify the bitrate to be used in line 43❤
 
 ## requirements
 
