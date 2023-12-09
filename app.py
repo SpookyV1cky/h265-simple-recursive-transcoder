@@ -16,7 +16,7 @@ def transcod(video, out, new_bitrate, audio_codec, audio_bitrate):
     print("[ OK ]")
 
 def main():
-
+    
     rootfolder = sys.argv[1]
     for root, dirs, files in os.walk(rootfolder):
         
@@ -36,7 +36,7 @@ def main():
 
                     if(codec == 'h264'):
                         out = os.path.join(root, "h265_" + name)
-                        print("transcoding " + video)
+                        print("transcoding " + name)
                         transcod(video, out, new_bitrate, audio_codec, audio_bitrate)
                     else:
                         print("ignoring " + name + " (NOT H.264)") 
