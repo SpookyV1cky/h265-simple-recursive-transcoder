@@ -21,9 +21,9 @@ def main():
                     
                     if(codec == 'h264'):
                         print(Fore.RED + "Deleting " + name + "...")
-                        os.remove(video)
+                        #os.remove(video)
                     else:
-                        print(Fore.GREEN + "ignoring " + name + " (NOT H.264)") 
+                        print(Fore.GREEN + "ignoring " + name + " [NOT H.264] " + codec)
     
     print(Fore.GREEN + "[ See you later :3 ]")
 main()

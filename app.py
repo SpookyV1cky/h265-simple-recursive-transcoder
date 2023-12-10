@@ -2,44 +2,25 @@ import os
 import ffmpeg
 import sys
 from os.path import join, getsize
+from util.db import *
+from util.process import *
+from util.video_finder import find_something
 
-VIDEO_CODEC = 'hevc_nvenc' #this is for nvidia, for CPU u can specify libx265
-
-def transcod(video, out, new_bitrate, audio_codec, audio_bitrate):
-    
-    (
-    ffmpeg
-    .input(video)
-    .output(out, **{'b:v': new_bitrate, 'codec:v':VIDEO_CODEC, 'preset': 'slow', 'b:a':audio_bitrate, 'codec:a': audio_codec})
-    .run()
-    )
-    print("[ OK ]")
 
 def main():
     
-    rootfolder = sys.argv[1]
-    for root, dirs, files in os.walk(rootfolder):
+    tasklist = db_load()
+    
+    if(tasklist):
         
-        for name in files:
-                
-                if(name.split('.').pop() == 'mp4'):
-                    video = os.path.join(root, name)
-                    
-                    metadata = ffmpeg.probe(video)
-                    codec = metadata['streams'][0]['codec_name']
-                    
-                    bit_rate = metadata['streams'][0]['bit_rate']
-                    new_bitrate = int(float(bit_rate) * .60) #60%
-                
-                    audio_codec = metadata['streams'][1]['codec_name']
-                    audio_bitrate = metadata['streams'][1]['bit_rate']
-
-                    if(codec == 'h264'):
-                        out = os.path.join(root, "h265_" + name)
-                        print("transcoding " + name)
-                        transcod(video, out, new_bitrate, audio_codec, audio_bitrate)
-                    else:
-                        print("ignoring " + name + " (NOT H.264)") 
-
+        if(input('continue from the last session?(Y/N)').lower() =='y' ):
+            process(tasklist)
+        else:
+            tasklist = find_something()
+            process(tasklist)
+            
+    else:
+        tasklist = find_something()
+        process(tasklist)
 main()
 
