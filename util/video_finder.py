@@ -6,7 +6,7 @@ from colorama import Back, Fore, Style
 
 def find_something():
     
-    rootfolder = input("folder path: ")
+    rootfolder = input(Fore.CYAN + "folder path: ")
     
     print(Fore.GREEN + " Scanning... ")
 
@@ -40,5 +40,5 @@ def find_something():
                          "status": False
                         })
     print(Fore.GREEN + " [ OK ] ")
-    db_save(tasklist);
+    db_save(tasklist)
     return tasklist
