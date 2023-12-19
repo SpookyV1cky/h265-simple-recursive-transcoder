@@ -1,3 +1,4 @@
-videotest/
 db.json
 util/__pycache__
+tests/
+dist/
