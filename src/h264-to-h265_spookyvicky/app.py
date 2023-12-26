@@ -1,6 +1,7 @@
 import os
 import ffmpeg
 import sys
+import colorama
 from os.path import join, getsize
 from util.db import *
 from util.process import *
@@ -9,7 +10,10 @@ from util.remove import *
 from colorama import Back, Fore, Style
 
 def main():
-    
+    colorama.init(autoreset = True)
+    print(Fore.CYAN + '########################################')
+    print(Fore.CYAN + 'h264 to h265 simple recursive transcoder')
+    print(Fore.CYAN + '############ By SpookyV1cky ############\n')
     tasklist = db_load()
     
     if(tasklist):

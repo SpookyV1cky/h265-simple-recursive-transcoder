@@ -2,10 +2,13 @@ import os
 import ffmpeg
 from os.path import join, getsize
 from util.db import *
+import colorama
 from colorama import Back, Fore, Style
 
 def find_something():
     
+    colorama.init(autoreset = True)
+
     rootfolder = input(Fore.CYAN + "folder path: ")
     
     print(Fore.GREEN + " Scanning... ")

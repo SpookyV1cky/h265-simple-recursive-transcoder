@@ -3,12 +3,13 @@ import ffmpeg
 from os.path import join, getsize
 from util.db import *
 import time
+import colorama
 from colorama import Back, Fore, Style
 
 VIDEO_CODEC = 'hevc_qsv' #libx265 for CPU, hevc_nvenc for Nvidia GPU, hevc_qsv intel
 
 def transcod(video, out, new_bitrate, audio_codec, audio_bitrate):
-    
+
     (
     ffmpeg
     .input(video)
@@ -19,6 +20,7 @@ def transcod(video, out, new_bitrate, audio_codec, audio_bitrate):
 
 
 def process(tasklist):
+    colorama.init(autoreset = True)
 
     for task in tasklist:
         if(task['status'] == False):

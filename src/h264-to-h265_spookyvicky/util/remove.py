@@ -8,7 +8,8 @@ from colorama import Back, Fore, Style
 from os.path import join, getsize
 
 def delete_all():
-    
+    colorama.init(autoreset = True)
+
 
     rootfolder = input(Fore.CYAN + "folder path: ")
     print(Fore.GREEN + " Scanning... ")
